@@ -29,7 +29,7 @@ public class Vue extends JPanel {
         this.jeu = jeu;
 
         // initialise la frame
-        String descriptif = jeu.jeuToString();
+        String descriptif = jeu.JeuToString();
 
         // recupere les lignes
         String[] lignes = descriptif.split("\n");
@@ -54,7 +54,7 @@ public class Vue extends JPanel {
         super.paint(g);
 
         // recupere le descriptif
-        String desc = this.jeu.jeuToString();
+        String desc = this.jeu.JeuToString();
         String[] lignes = desc.split("\n");
 
         // pour chaque ligne
