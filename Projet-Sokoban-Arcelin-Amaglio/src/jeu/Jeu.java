@@ -204,8 +204,4 @@ public class Jeu {
     public ListeElements getListeCaisses() {
         return this.caisses;
     }
-
-    public ListeElements getListeDepots() {
-        return this.depots;
-    }
 }

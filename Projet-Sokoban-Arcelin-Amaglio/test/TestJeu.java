@@ -7,6 +7,11 @@ import jeu.*;
 
 public class TestJeu {
 
+    /**
+     * test du constructeur
+     *
+     * @throws Exception
+     */
     @Test
     public void test_Constructeur() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
@@ -14,6 +19,11 @@ public class TestJeu {
         assertEquals(19, jeu.getLaby().getLargeurMax(), "La hauteur doit être égal à 19");
     }
 
+    /**
+     * test de la méthode getChar
+     *
+     * @throws Exception
+     */
     @Test
     public void test_getChar() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
@@ -31,6 +41,11 @@ public class TestJeu {
         assertEquals('$', c5, "Aux coordonnées (7,3) la valeur doit être '$' ");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = HAUT
+     *
+     * @throws Exception
+     */
     @Test
     public void test_deplacerPerso_Haut() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
@@ -42,8 +57,13 @@ public class TestJeu {
         assertEquals(7, jeu.getPerso().getY(), "La valeur de getY diminue de 1");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = BAS mais il y a un mur
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_Bas() throws Exception {
+    public void test_deplacerPerso_Bas_MUR() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
 
         char c4 = jeu.getChar(11, 8); //coordonnées initial du personnage
@@ -54,8 +74,13 @@ public class TestJeu {
         assertEquals(8, jeu.getPerso().getY(), "La valeur de getY ne change pas car il y a un mur");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = Gauche mais il y a un mur
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_Gauche1() throws Exception {
+    public void test_deplacerPerso_Gauche_MUR() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
 
         char c4 = jeu.getChar(11, 8); //coordonnées initial du personnage
@@ -66,8 +91,13 @@ public class TestJeu {
         assertEquals(8, jeu.getPerso().getY(), "La valeur de getY ne change pas");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = Droite mais il y a un mur
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_Droite1() throws Exception {
+    public void test_deplacerPerso_Droite_MUR() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
 
         char c4 = jeu.getChar(11, 8); //coordonnées initial du personnage
@@ -78,8 +108,13 @@ public class TestJeu {
         assertEquals(8, jeu.getPerso().getY(), "La valeur de getY ne change pas");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = Gauche
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_Gauche2() throws Exception {
+    public void test_deplacerPerso_Gauche_Normal() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_simple.txt"); //on change de labyrinthe pour effectuer de nouveaux tests
         char c4 = jeu.getChar(3, 2); //coordonnées initial du personnage
 
@@ -90,8 +125,13 @@ public class TestJeu {
         assertEquals(2, jeu.getPerso().getY(), "La valeur de getY ne change pas");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = Droite
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_Droit2() throws Exception {
+    public void test_deplacerPerso_Droite_Normal() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_simple.txt"); //on change de labyrinthe pour effectuer de nouveaux tests
         char c4 = jeu.getChar(3, 2); //coordonnées initial du personnage
 
@@ -102,8 +142,13 @@ public class TestJeu {
         assertEquals(2, jeu.getPerso().getY(), "La valeur de getY ne change pas");
     }
 
+    /**
+     * test de la méthode deplacerPerso quand action = Haut mais il y a un mur
+     *
+     * @throws Exception
+     */
     @Test
-    public void test_deplacerPerso_MUR() throws Exception {
+    public void test_deplacerPerso_Haut_MUR() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
 
         char c4 = jeu.getChar(11, 8); //coordonnées initial du personnage
@@ -116,6 +161,12 @@ public class TestJeu {
         assertEquals(7, jeu.getPerso().getY(), "La valeur de getY ne change pas car il y a un mur");
     }
 
+    /**
+     * test deplacerPerso lorsque que le perso va dans la direction d'une caisse adjacente à une autre
+     * le perso ne devrait pas pouvoir déplacer deux caisses
+     *
+     * @throws Exception
+     */
     @Test
     public void test_deplacerPerso_2_CAISSES() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test2.txt");
@@ -134,6 +185,12 @@ public class TestJeu {
         assertEquals(3, jeu.getListeCaisses().getElementByIndice(1).getX(), "Les coordonnées de la seconde caisse ne change pas");
     }
 
+    /**
+     * test deplacerPerso lorsqu'il y a une seul caisse, cette fois-ci le perso doit pouvoir
+     * déplacer la caisse
+     *
+     * @throws Exception
+     */
     @Test
     public void test_deplacerPerso_1_CAISSE() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test3.txt");
@@ -148,9 +205,33 @@ public class TestJeu {
 
         assertEquals(3, jeu.getPerso().getX(), "La getX doit renvoyer x-1");
         assertEquals(2, jeu.getListeCaisses().getElementByIndice(0).getX(), "La getX doit renvoyer x-1");
-
     }
 
+    /**
+     * méthode déplacerPerso lorsque l'action n'est pas connue, alors une erreur doit s'afficher
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test_deplacerPerso_Action_Inconnue() throws Exception {
+        Jeu jeu = Chargement.chargerJeu("laby/laby_test.txt");
+        char c4 = jeu.getChar(11, 8); //coordonnées initial du personnage
+        assertEquals('@', c4, "Aux coordonnées (11,8) la valeur doit être '@' ");
+
+        String erreur = "";
+        try {
+            jeu.deplacerPerso("ACTION_INCONNUE");
+        } catch (ActionInconnueException e) {
+            erreur = e.getMessage();
+        }
+        assertEquals("Action inconnue : ACTION_INCONNUE", erreur, "L'action n'est pas reconnue");
+    }
+
+    /**
+     * test méthode etreFini 1er deplacement la partie n'est pas finie deuxième action la partie est finie
+     *
+     * @throws Exception
+     */
     @Test
     public void test_etreFini() throws Exception {
         Jeu jeu = Chargement.chargerJeu("laby/laby_test3.txt");

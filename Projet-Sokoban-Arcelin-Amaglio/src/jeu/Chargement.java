@@ -20,6 +20,7 @@ public class Chargement {
         //déclaration des listes Caisses & Dépot
         ListeElements listeCaisses = new ListeElements();
         ListeElements listeDepot = new ListeElements();
+
         //déclaration de la liste de String
         ArrayList<String> listeString = new ArrayList<String>();    //liste utile a la lecture du fichier
 
